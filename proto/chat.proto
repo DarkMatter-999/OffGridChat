@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package chat;
+
+option go_package = "./chat";
+
+service ChatService {
+  rpc Discover (DiscoverPacket) returns (DiscoverPacket) {}
+  rpc SendMessage (MessageRequest) returns (MessageResponse) {}
+}
+
+
+message DiscoverPacket {
+  repeated Host host = 1;
+}
+
+message Host {
+  string ip = 1;
+  string name = 2;
+}
+
+
+message MessageRequest {
+  string recipient_ip = 1;
+  string message = 2;
+}
+
+message MessageResponse {
+  string message = 1;
+}
